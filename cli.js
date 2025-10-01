@@ -82,7 +82,7 @@ const { status } = spawnSync(
         `../.bin/tsc${process.platform === 'win32' ? '.cmd' : ''}`,
       ),
   ['-p', tmpTsconfigPath, ...remainingArgsToForward],
-  { stdio: 'inherit' },
+  { stdio: 'inherit', shell: ${process.platform === 'win32' ? true : undefined} }, // Win32 seems to require a shell for running tsc...
 )
 
 process.exit(status)
